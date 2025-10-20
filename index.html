@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dành Tặng Em Yêu - Ngày 20/10</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Charm:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #ff3366;
+            /* Hồng đậm lãng mạn */
+            --secondary-color: #ffd6e0;
+            /* Hồng nhạt */
+            --bg-start: #f0e1f3;
+            --bg-end: #d9b3e1;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            overflow: hidden;
+            font-family: 'Charm', cursive;
+            /* Font chữ mềm mại */
+            position: relative;
+            perspective: 1000px;
+            /* Thêm hiệu ứng 3D nhẹ */
+        }
+
+        /* Khung chứa lời chúc lãng mạn hơn */
+        .message-container {
+            text-align: center;
+            padding: 40px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            /* Box-shadow mềm mại và lấp lánh nhẹ */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--primary-color);
+            position: relative;
+            z-index: 10;
+            transform: rotateY(0deg) scale(1);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .message-container:hover {
+            transform: rotateY(5deg) scale(1.02);
+            /* Hiệu ứng hover 3D nhẹ */
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            /* Font chữ tiêu đề uốn lượn */
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            /* Hiệu ứng lấp lánh mạnh hơn */
+            animation: sparkle-text 2s infinite alternate;
+        }
+
+        @keyframes sparkle-text {
+            0% {
+                text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--secondary-color);
+            }
+
+            100% {
+                text-shadow: 0 0 15px var(--primary-color), 0 0 25px #ff66a3;
+            }
+        }
+
+        p {
+            font-size: 1.4em;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .sender {
+            margin-top: 30px;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #8c005b;
+        }
+
+        /* Hiệu ứng trái tim rơi 3D */
+        .heart {
+            position: absolute;
+            color: var(--primary-color);
+            font-size: 2em;
+            /* Kích thước lớn hơn */
+            opacity: 0;
+            /* Bắt đầu ẩn */
+            animation: fall linear infinite;
+            z-index: 5;
+            user-select: none;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(45vh) translateX(50px) rotate(180deg) scale(0.8);
+                /* Lượn sóng nhẹ */
+            }
+
+            100% {
+                transform: translateY(100vh) translateX(100px) rotate(360deg) scale(0.6);
+                opacity: 0;
+            }
+        }
+
+        /* Hiệu ứng Confetti (Pháo hoa lấp lánh) */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+            /* Hiệu ứng lấp lánh nhẹ nhàng */
+            box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.8);
+            transform: scale(0);
+            animation: confetti-fall 8s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translate(0, -10vh) rotate(0deg) scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(0, 100vh) rotate(720deg) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="message-container">
+        <h1>Gửi Bạn yêu,Chúc bạn 20/10 vui vẻ ! 🌹</h1>
+        <p>
+            Bạn là đóa hoa rực rỡ nhất trong vườn hoa trên thế giới của tôi <br>
+            Chúc Mừng Ngày Phụ Nữ Việt Nam!
+        </p>
+        <p>
+            Chúc bạn luôn mãi mãi xinh đẹp, tươi trẻ,<br>
+            hạnh phúc thật trọn vẹn và mọi điều tốt lành sẽ đến. <br>
+            Cảm ơn bạn vì đã đến trong thế giới của tôi.
+        </p>
+        <p class="sender">
+            Mại yêu,Thắng
+        </p>
+    </div>
+
+    <script>
+        const body = document.body;
+        const heartsCount = 20;
+        const confettiCount = 50;
+        const heartShapes = ['💖', '❤️', '💕', '✨']; // Nhiều biểu tượng hơn
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            // Chọn hình trái tim ngẫu nhiên
+            heart.innerHTML = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 1.5 + 1 + 'em';
+            heart.style.animationDuration = Math.random() * 6 + 6 + 's';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+
+            body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 12000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+
+            // Chọn màu ngẫu nhiên cho pháo hoa
+            const colors = ['#f9cb40', '#ff5a5f', '#a9e190', '#63bcf3', '#ffc1d3'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+            // Vị trí, kích thước và tốc độ ngẫu nhiên
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.width = confetti.style.height = Math.random() * 8 + 5 + 'px';
+            confetti.style.animationDuration = Math.random() * 5 + 3 + 's';
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+
+            body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 8000);
+        }
+
+        // Tạo hiệu ứng ban đầu
+        for (let i = 0; i < heartsCount; i++) {
+            createHeart();
+        }
+        for (let i = 0; i < confettiCount; i++) {
+            createConfetti();
+        }
+
+        // Tạo hiệu ứng liên tục
+        setInterval(createHeart, 800);
+        setInterval(createConfetti, 150); 
+    </script>
+
+</body>
+
+</html>
